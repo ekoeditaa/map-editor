@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import Toolbox from '../Toolbox';
 import GridMap from '../GridMap';
 import { loadMap } from './utils';
-import './App.module.scss';
+import styles from './App.module.scss';
 
 class App extends PureComponent {
   state = {
@@ -30,7 +30,7 @@ class App extends PureComponent {
     } = this.state;
 
     return (
-      <div>
+      <div className={styles.App}>
         <h1>Map Editor</h1>
         <Toolbox
           map={map}

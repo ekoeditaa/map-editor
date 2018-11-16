@@ -1,5 +1,3 @@
-import { CellTypes } from '../../App/utils';
-
 export const computeStyle = (selected, hovered) => {
   const [rowSelected, colSelected] = selected;
   const [rowHovered, colHovered] = hovered;
@@ -13,7 +11,7 @@ export const computeStyle = (selected, hovered) => {
   for (let row = startRow; row <= endRow; row++) {
     for (let col = startCol; col <= endCol; col++) {
       styles[`${row}_${col}`] = {
-        backgroundColor: 'grey',
+        backgroundColor: '#F0F0F0',
       };
     }
   }
@@ -21,7 +19,7 @@ export const computeStyle = (selected, hovered) => {
   return styles;
 };
 
-export const getNextMap = (currMap, selected, endCell) => {
+export const getNextMap = (currMap, selected, endCell, type) => {
   const [rowSelected, colSelected] = selected;
   const [rowEnd, colEnd] = endCell;
 
@@ -33,7 +31,7 @@ export const getNextMap = (currMap, selected, endCell) => {
   const map = currMap.map(row => row.map(cell => cell));
   for (let row = startRow; row <= endRow; row++) {
     for (let col = startCol; col <= endCol; col++) {
-      map[row][col] = CellTypes.WALKWAY;
+      map[row][col] = type;
     }
   }
 

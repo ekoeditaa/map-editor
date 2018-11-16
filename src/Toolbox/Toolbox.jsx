@@ -5,6 +5,7 @@ import WalkwayTool from './WalkwayTool';
 import MarkTool from './MarkTool';
 import IntersectionTool from './IntersectionTool';
 import { CellTypes } from '../App/utils';
+import styles from './Toolbox.module.scss';
 
 const tools = [
   CellTypes.WALKWAY,
@@ -52,7 +53,7 @@ class Toolbox extends PureComponent {
 
     return (
       <Fragment>
-        <div>
+        <div className={styles.Toolbox}>
           {this.renderTools(active)}
         </div>
         {children(listeners)}

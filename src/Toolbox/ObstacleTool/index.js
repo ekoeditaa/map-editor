@@ -1,1 +1,3 @@
-export default () => 'O';
+import ObstacleTool from './ObstacleTool';
+
+export default ObstacleTool;

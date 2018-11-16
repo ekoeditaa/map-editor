@@ -2,16 +2,16 @@ import React from 'react';
 import { CellTypes } from '../../App/utils';
 import CommonTool from '../CommonTool';
 
-function WalkwayTool(props) {
+function ObstacleTool(props) {
   return (
     <CommonTool
-      type={CellTypes.WALKWAY}
-      icon="Walkway"
+      type={CellTypes.OBSTACLE}
+      icon="Obstacle"
       {...props}
     />
   );
 }
 
-WalkwayTool.propTypes = {};
+ObstacleTool.propTypes = {};
 
-export default WalkwayTool;
+export default ObstacleTool;

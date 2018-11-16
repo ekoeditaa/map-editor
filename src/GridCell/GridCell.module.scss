@@ -1,0 +1,13 @@
+.GridCell {
+  width: 40px;
+  height: 40px;
+  box-sizing: border-box;
+  vertical-align: middle;
+  text-align: center;
+  cursor: default;
+  transition: all .1s ease;
+
+  &:hover {
+    background-color: #F0F0F0;
+  }
+}

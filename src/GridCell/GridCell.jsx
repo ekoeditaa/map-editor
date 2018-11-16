@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import memo from 'memoize-one';
+import styles from './GridCell.module.scss';
 
 class GridCell extends PureComponent {
-  proxyListeners = memo((listeners) => {
+  proxyListeners = (listeners) => {
     const { row, col } = this.props;
     const result = {};
 
@@ -14,7 +14,7 @@ class GridCell extends PureComponent {
       });
 
     return result;
-  })
+  }
 
   render() {
     const {
@@ -29,6 +29,7 @@ class GridCell extends PureComponent {
       <td
         {...proxied}
         style={style}
+        className={styles.GridCell}
       >
         {value}
       </td>

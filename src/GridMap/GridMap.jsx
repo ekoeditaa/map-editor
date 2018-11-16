@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import GridCell from '../GridCell';
+import styles from './GridMap.module.scss';
 
 class GridMap extends PureComponent {
   render() {
@@ -11,7 +12,7 @@ class GridMap extends PureComponent {
     } = this.props;
 
     return (
-      <table>
+      <table className={styles.GridMap}>
         <tbody>
           {map.map((row, rowNum) => (
             <tr key={rowNum}>
