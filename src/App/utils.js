@@ -12,7 +12,7 @@ export const getCleanLocations = (locations, map) => {
   return locations.map(location => {
     const qrs = location.qrs.filter(item => {
       if (map[item.y][item.x] !== CellTypes.MARK) return false;
-      return true; 
+      return true;
     })
     return {
       ...locations,
@@ -22,6 +22,7 @@ export const getCleanLocations = (locations, map) => {
 }
 
 export async function loadMap() {
+  fetch('http://b1f17f9c.ngrok.io/api/admin/get_map/')
   return {
     map: new Array(MOCK_HEIGHT)
       .fill(null)
@@ -31,8 +32,16 @@ export async function loadMap() {
 };
 
 export async function saveMap(map, locations) {
+  const res = await fetch('http://b1f17f9c.ngrok.io/api/admin/edit_map/', {
+    method: 'POST',
+    body: JSON.stringify({
+      grid: map,
+      locations
+    })
+  });
+  const data = await res.json();
   return {
-    map,
-    locations,
+    map: data.result.grid,
+    locations: data.result.locations
   };
-};
+}
