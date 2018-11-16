@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { CellTypes } from '../../App/utils';
 import LocationForm from './LocationForm';
 import memo from 'memoize-one';
+import cx from 'classnames';
 import styles from './MarkTool.module.scss';
 
 class MarkTool extends PureComponent {
@@ -32,27 +33,36 @@ class MarkTool extends PureComponent {
     if (isActive) setListeners(this.getListeners());
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('keyup', this.handleEscape);
+  }
+
+  handleEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Escape') {
+      this.clearPosition();
+    }
+  }
+
   componentDidUpdate(prevProps) {
     const { isActive, setListeners } = this.props;
 
     if (!prevProps.isActive && isActive) setListeners(this.getListeners());
     if (prevProps.isActive && !isActive) {
-      this.clear();
+      this.clearPosition();
     }
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('keyup', this.handleEscape);
-  }
-
   render() {
-    const { locations } = this.props;
+    const { locations, isActive } = this.props;
     const { position } = this.state;
 
     return (
       <Fragment>
         <button
           onClick={this.activate}
+          className={cx( styles.MarkTool, {
+            [styles.active]: isActive,
+          })}
         >
           Mark
         </button>
