@@ -1,0 +1,52 @@
+.LocationForm {
+  margin: auto;
+  // margin-top: 80px;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.2);
+  background-color: white;
+  flex-direction: column;
+  display: flex;
+}
+
+.LocationList {
+  background-color: white;
+  flex-direction: column;
+  display: flex;
+  max-height: 100px;
+  overflow: auto;
+}
+
+.LocationItem {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.LocationItem:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.LocationItem.LocationItem:last-child {
+  border-bottom: unset;
+}
+
+.button {
+  background-color: #5ab109;
+  box-shadow: 0 3px 15px -2px rgba(#5ab109, .8);
+  color: white;
+}
+
+.input {
+  margin: 8px 0;
+  font-size: 14px;
+  height: 36px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 5px;
+  border: solid 1px rgba(black, .2);
+  box-shadow: 0 5px 15px -5px rgba(black, .1);
+  padding: 12px;
+}
