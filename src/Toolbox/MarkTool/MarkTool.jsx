@@ -1,5 +1,6 @@
 import React, { PureComponent, Fragment } from 'react';
 import { createPortal } from 'react-dom';
+import { getNextMap } from '../CommonTool/utils';
 import { CellTypes } from '../../App/utils';
 import LocationForm from './LocationForm';
 import memo from 'memoize-one';
@@ -9,11 +10,13 @@ import styles from './MarkTool.module.scss';
 class MarkTool extends PureComponent {
   state = {
     position: null,
+    row: null,
+    col: null
   };
 
   handleClick = (row, col, e) => {
-    const { top, left } = e.target.getBoundingClientRect();
-    this.setState({ position: { top, left }});
+    const { top, left, width } = e.target.getBoundingClientRect();
+    this.setState({ position: { top, left: left + width }, row: row, col: col});
   }
 
   clearPosition = () => this.setState({ position: null });
@@ -50,6 +53,42 @@ class MarkTool extends PureComponent {
     if (prevProps.isActive && !isActive) {
       this.clearPosition();
     }
+  }
+
+  submitLocation = (locationName) => {
+    const { map, setLocations, locations, setMap } = this.props
+    const { row, col } = this.state
+
+    if (locations.find(val => val.name === locationName)) {
+      setLocations(
+        locations.filter(item => {
+          if (item.name === locationName) {
+            return {
+              ...item,
+              qrs: [
+                ...item.qrs,
+                { y: row, x: col }
+              ]
+            }
+          }
+          return item
+        })
+      )
+    } else {
+      setLocations([
+        ...locations,
+        {
+          name: locationName,
+          qrs: [
+            { y: row, x: col }
+          ]
+        }
+      ])
+    }
+
+    const nextMap = getNextMap(map, [row, col], [row, col], CellTypes.MARK);
+    setMap(nextMap);
+    this.clearPosition()
   }
 
   render() {
