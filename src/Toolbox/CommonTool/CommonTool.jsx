@@ -72,7 +72,7 @@ class CommonTool extends PureComponent {
   }
 
   render() {
-    const { isActive, icon } = this.props;
+    const { isActive, icon, name } = this.props;
 
     return (
       <button
@@ -82,6 +82,9 @@ class CommonTool extends PureComponent {
         })}
       >
         {icon}
+        <div className={styles.Tooltip}>
+          {name}
+        </div>
       </button>
     );
   }

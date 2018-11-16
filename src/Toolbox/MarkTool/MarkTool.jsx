@@ -2,6 +2,8 @@ import React, { PureComponent, Fragment } from 'react';
 import { createPortal } from 'react-dom';
 import { getNextMap } from '../CommonTool/utils';
 import { CellTypes } from '../../App/utils';
+import qrIcon from '../../assets/qr_color.svg';
+import qrIconInverted from '../../assets/qr_inverted.svg';
 import LocationForm from './LocationForm';
 import memo from 'memoize-one';
 import cx from 'classnames';
@@ -115,7 +117,16 @@ class MarkTool extends PureComponent {
             [styles.active]: isActive,
           })}
         >
-          Mark
+          <img
+            className={styles.icon}
+            src={isActive
+              ? qrIconInverted
+              : qrIcon}
+            alt="qr"
+          />
+          <div className={styles.Tooltip}>
+            Add QR
+          </div>
         </button>
         {position && createPortal(
           <div

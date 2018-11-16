@@ -1,5 +1,5 @@
 import React from 'react';
-import qrIcon from '../assets/qr_icon.svg';
+import qrIcon from '../assets/qr_inverted.svg';
 import { CellTypes } from '../App/utils';
 import styles from './GridCell.module.scss';
 

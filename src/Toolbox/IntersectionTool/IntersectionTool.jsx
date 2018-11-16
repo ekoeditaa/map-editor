@@ -1,5 +1,7 @@
 import React, { PureComponent } from 'react';
 import { CellTypes } from '../../App/utils';
+import intersectIcon from '../../assets/intersect_color.svg';
+import intersectIconInverted from '../../assets/intersect_inverted.svg';
 import memo from 'memoize-one';
 import cx from 'classnames';
 import styles from './IntersectionTool.module.scss';
@@ -42,7 +44,16 @@ class IntersectionTool extends PureComponent {
           [styles.active]: isActive,
         })}
       >
-        Intersection
+        <img
+          className={styles.icon}
+          src={isActive
+            ? intersectIconInverted
+            : intersectIcon}
+          alt="intersect"
+        />
+        <div className={styles.Tooltip}>
+          Add Checkpoint
+        </div>
       </button>
     );
   }
