@@ -1,7 +1,8 @@
 import React, { PureComponent } from 'react';
 import Toolbox from '../Toolbox';
 import GridMap from '../GridMap';
-import { loadMap, saveMap, getCleanLocations } from './utils';
+import Resize from '../Resize';
+import { loadMap, saveMap, expand, getCleanLocations } from './utils';
 import styles from './App.module.scss';
 
 class App extends PureComponent {
@@ -16,7 +17,7 @@ class App extends PureComponent {
     this.setState({ map, locations });
   }
 
-  async saveMap() {
+  saveMap = async () => {
     const { map, locations } = this.state;
     const cleanLocations = getCleanLocations(locations, map);
 
@@ -25,6 +26,12 @@ class App extends PureComponent {
       map: nextMap,
       locations: nextLocations,
     });
+  }
+
+  resize = (height, width) => {
+    const { map } = this.state;
+    const nextMap = expand(map, height, width);
+    this.setMap(nextMap);
   }
 
   setCellStyles = s => this.setState({ cellStyles: s });
@@ -52,11 +59,23 @@ class App extends PureComponent {
           setLocations={this.setLocations}
         >
           {listeners => (
-            <GridMap
-              listeners={listeners}
-              map={map}
-              cellStyles={cellStyles}
-            />
+            <div className={styles.gridContainer}>
+              <GridMap
+                listeners={listeners}
+                map={map}
+                cellStyles={cellStyles}
+              />
+              <Resize
+                resize={this.resize}
+                map={map}
+              />
+              <button
+                onClick={this.saveMap}
+                className={styles.saveButton}
+              >
+                Save
+              </button>
+            </div>
           )}
         </Toolbox>
       </div>
