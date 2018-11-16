@@ -50,13 +50,13 @@ class Resize extends PureComponent {
             className={styles.button}
             onClick={this.close}
           >
-            close
+            Close
           </button>
           <button
             className={styles.button}
             onClick={this.submit}
           >
-            submit
+            Resize
           </button>
         </Dialog>
       </Fragment>
