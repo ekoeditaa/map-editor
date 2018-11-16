@@ -1,1 +1,3 @@
-export default () => 'M';
+import MarkTool from './MarkTool';
+
+export default MarkTool;
