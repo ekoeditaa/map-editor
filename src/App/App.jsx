@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import Toolbox from '../Toolbox';
 import GridMap from '../GridMap';
-import { loadMap } from './utils';
+import { loadMap, saveMap, getCleanLocations } from './utils';
 import styles from './App.module.scss';
 
 class App extends PureComponent {
@@ -14,6 +14,17 @@ class App extends PureComponent {
   async componentDidMount() {
     const { map, locations } = await loadMap();
     this.setState({ map, locations });
+  }
+
+  async saveMap() {
+    const { map, locations } = this.state;
+    const cleanLocations = getCleanLocations(locations, map);
+
+    const { map: nextMap, locations: nextLocations } = await saveMap(map, cleanLocations);
+    this.setState({
+      map: nextMap,
+      locations: nextLocations,
+    });
   }
 
   setCellStyles = s => this.setState({ cellStyles: s });

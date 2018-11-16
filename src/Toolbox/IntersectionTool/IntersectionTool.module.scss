@@ -1,0 +1,14 @@
+.Form {
+  position: fixed;
+}
+
+.IntersectionTool {
+  width: 80px;
+  height: 80px;
+
+  &.active {
+    background-color: #5ab109;
+    box-shadow: 0 3px 15px -2px rgba(#5ab109, .8);
+    color: white;
+  }
+}

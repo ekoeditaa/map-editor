@@ -74,6 +74,12 @@ export const getStyle = (type, row, col, map) => {
       return style;
     }
 
+    case CellTypes.MARK:
+      return {
+        backgroundColor: '#5ab109',
+        boxShadow: '0 5px 15px rgba(90, 177, 9, 0.5)',
+      };
+
     default:
       return {};
   }
@@ -86,6 +92,9 @@ export const getContent = (type) => {
     }
     case CellTypes.MARK: {
       return <img src={qrIcon} alt="mark" className={styles.mark} />;
+    }
+    case CellTypes.INTERSECTION: {
+      return <div className={styles.intersection} />;
     }
     default:
       return null;

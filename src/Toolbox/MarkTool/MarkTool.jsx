@@ -21,6 +21,7 @@ class MarkTool extends PureComponent {
       row,
       col,
     });
+    this.props.setCellStyles({ [`${row}_${col}`]: { backgroundColor: '#5ab109' } })
   }
 
   clear = () => {
@@ -29,6 +30,7 @@ class MarkTool extends PureComponent {
       row: null,
       col: null,
     });
+    this.props.setCellStyles({});
   }
 
   getListeners = memo(() => ({
