@@ -16,10 +16,20 @@ class MarkTool extends PureComponent {
 
   handleClick = (row, col, e) => {
     const { top, left, width } = e.target.getBoundingClientRect();
-    this.setState({ position: { top, left: left + width }, row: row, col: col});
+    this.setState({
+      position: { top, left: left + width },
+      row,
+      col,
+    });
   }
 
-  clearPosition = () => this.setState({ position: null });
+  clear = () => {
+    this.setState({
+      position: null,
+      row: null,
+      col: null,
+    });
+  }
 
   getListeners = memo(() => ({
     onClick: this.handleClick,
@@ -42,7 +52,7 @@ class MarkTool extends PureComponent {
 
   handleEscape = (e: KeyboardEvent) => {
     if (e.key === 'Escape') {
-      this.clearPosition();
+      this.clear();
     }
   }
 
@@ -51,7 +61,7 @@ class MarkTool extends PureComponent {
 
     if (!prevProps.isActive && isActive) setListeners(this.getListeners());
     if (prevProps.isActive && !isActive) {
-      this.clearPosition();
+      this.clear();
     }
   }
 
@@ -88,7 +98,7 @@ class MarkTool extends PureComponent {
 
     const nextMap = getNextMap(map, [row, col], [row, col], CellTypes.MARK);
     setMap(nextMap);
-    this.clearPosition()
+    this.clear()
   }
 
   render() {
@@ -113,7 +123,7 @@ class MarkTool extends PureComponent {
             <LocationForm
               locations={locations}
               submit={this.submitLocation}
-              close={this.clearPosition}
+              close={this.clear}
             />
           </div>,
           document.body,

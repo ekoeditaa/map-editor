@@ -39,7 +39,14 @@ class LocationForm extends PureComponent {
 
     return (
       <div className={styles.LocationForm}>
-        <input ref='input' className={styles.input} placeholder="location" onChange={this.onSearchChange} onKeyPress={this.handleKeyPress} value={search} />
+        <input
+          ref="input"
+          className={styles.input}
+          placeholder="location"
+          onChange={this.onSearchChange}
+          onKeyPress={this.handleKeyPress}
+          value={search}
+        />
         <div className={styles.LocationList}>
           {this.getSearchResult().map(item => (
             <div key={item.name} className={styles.LocationItem} onClick={() => this.handleClickSearchItem(item.name)}>{item.name}</div>
