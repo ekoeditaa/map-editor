@@ -76,8 +76,14 @@ export const getStyle = (type, row, col, map) => {
 
     case CellTypes.MARK:
       return {
-        backgroundColor: '#5ab109',
-        boxShadow: '0 5px 15px rgba(90, 177, 9, 0.5)',
+        backgroundColor: '#584da0',
+        boxShadow: '0 5px 15px rgba(88, 77, 160, 0.5)',
+        borderColor: 'transparent',
+      };
+    
+    case CellTypes.INTERSECTION:
+      return {
+        borderColor: 'transparent',
       };
 
     default:

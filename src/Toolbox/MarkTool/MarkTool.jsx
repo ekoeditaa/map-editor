@@ -21,7 +21,7 @@ class MarkTool extends PureComponent {
       row,
       col,
     });
-    this.props.setCellStyles({ [`${row}_${col}`]: { backgroundColor: '#5ab109' } })
+    this.props.setCellStyles({ [`${row}_${col}`]: { backgroundColor: '#584da0' } })
   }
 
   clear = () => {

@@ -21,7 +21,7 @@ export const getCleanLocations = (locations, map) => {
 }
 
 export async function loadMap() {
-  const res = await fetch('http://b1f17f9c.ngrok.io/api/admin/get_map/');
+  const res = await fetch('http://9d5b87ab.ngrok.io/api/admin/get_map/');
   const { data } = await res.json();
 
   return {
@@ -31,7 +31,7 @@ export async function loadMap() {
 };
 
 export async function saveMap(map, locations) {
-  const res = await fetch('http://b1f17f9c.ngrok.io/api/admin/edit_map/', {
+  const res = await fetch('http://9d5b87ab.ngrok.io/api/admin/edit_map/', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
